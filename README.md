@@ -78,9 +78,7 @@ Handles the user interface for inputting coordinates.
 The **swivel angle** is the angle between two vectors in the XY-plane, which represents how much a pipe bends horizontally. To calculate the swivel angle between two consecutive pipes (represented as vectors `v1` and `v2`), we use the dot product formula:
 
 ```tex
-\[
-\theta = \arccos\left(\frac{v1_x \cdot v2_x + v1_y \cdot v2_y}{|v1| \cdot |v2|}\right)
-\]
+$\[\theta = \arccos\left(\frac{v1_x \cdot v2_x + v1_y \cdot v2_y}{|v1| \cdot |v2|}\right)\]$
 ```
 
 Where:
