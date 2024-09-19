@@ -6,7 +6,7 @@ void PipeRoute::addPoint(const CartesianPoint& point) {
 
 void PipeRoute::displayPoints() const {
     for (const auto& point : points) {
-        std::cout << "Punkt: (" << point.x << ", " << point.y << ", " << point.z << ")\n";
+        std::cout << "Point: (" << point.x << ", " << point.y << ", " << point.z << ")\n";
     }
 }
 
@@ -21,12 +21,12 @@ double PipeRoute::calculateSwivelAngle(const Vector3D& v1, const Vector3D& v2) c
     double numerator = v1.dotProductXY(v2);
     double denominator = v1.magnitudeXY() * v2.magnitudeXY();
 
-    // Schutz vor Division durch Null
+    // Protection against division by zero
     if (denominator == 0) return 0;
 
     double cosTheta = numerator / denominator;
 
-    // Begrenzung des Wertes auf den Bereich [-1, 1], um numerische Fehler zu vermeiden
+    // Clamp the value to the range [-1, 1] to avoid numerical errors
     cosTheta = std::max(-1.0, std::min(1.0, cosTheta));
 
     double angle = std::acos(cosTheta) * (180.0 / M_PI);
@@ -42,7 +42,7 @@ double PipeRoute::calculateBendAngle(const Vector3D& v1, const Vector3D& v2) con
 
 void PipeRoute::calculateAngles() {
     if (points.size() < 3) {
-        std::cout << "Nicht genügend Punkte, um Winkel zu berechnen.\n";
+        std::cout << "Not enough points to calculate angles. Please enter at least 3 points.\n";
         return;
     }
 
@@ -55,8 +55,8 @@ void PipeRoute::calculateAngles() {
         double swivelAngle = calculateSwivelAngle(v1, v2);
         double bendAngle = calculateBendAngle(v1, v2);
 
-        std::cout << "Zwischen Segment " << i << " und " << i + 1 << ":\n";
-        std::cout << "  Schwenkwinkel (XY-Ebene): " << swivelAngle << " Grad\n";
-        std::cout << "  Biegewinkel (Z-Richtung): " << bendAngle << " Grad\n";
+        std::cout << "Between segment " << i << " and " << i + 1 << ":\n";
+        std::cout << "  Swivel angle (XY plane): " << swivelAngle << " degrees\n";
+        std::cout << "  Bend angle (Z direction): " << bendAngle << " degrees\n";
     }
 }

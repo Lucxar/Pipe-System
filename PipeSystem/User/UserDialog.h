@@ -7,6 +7,8 @@
 #include "../Lib/CartesianPoint.h"
 #include <iostream>
 
+using namespace std;
+
 class UserDialog {
 public:
     static void inputCoordinates(PipeRoute& route);

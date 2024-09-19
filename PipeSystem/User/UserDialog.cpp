@@ -1,7 +1,5 @@
 #include "UserDialog.h"
 
-using namespace std;
-
 void getCoordinate(const string& coordName, double& coord) {
     cout << coordName << ": ";
     while (!(cin >> coord)) {

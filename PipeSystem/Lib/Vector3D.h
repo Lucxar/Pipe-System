@@ -5,7 +5,6 @@
 
 #include "CartesianPoint.h"
 #include <cmath>
-#include <cmath>
 #include <math.h>
 
 #include <corecrt_math_defines.h>
