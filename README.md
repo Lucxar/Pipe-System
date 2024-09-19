@@ -77,9 +77,11 @@ Handles the user interface for inputting coordinates.
 ### Swivel Angle (XY-Plane)
 The **swivel angle** is the angle between two vectors in the XY-plane, which represents how much a pipe bends horizontally. To calculate the swivel angle between two consecutive pipes (represented as vectors `v1` and `v2`), we use the dot product formula:
 
+```tex
 \[
 \theta = \arccos\left(\frac{v1_x \cdot v2_x + v1_y \cdot v2_y}{|v1| \cdot |v2|}\right)
 \]
+```
 
 Where:
 - \( v1_x \) and \( v1_y \) are the X and Y components of the first vector.
@@ -92,18 +94,22 @@ This formula gives the angle in radians, which is then converted to degrees.
 The **bend angle** represents the vertical angle between two pipes. To compute the bend angle, we calculate the elevation angle (the angle between the vector and the XY-plane) for each vector and then determine the difference:
 
 1. **Elevation Angle of a Vector**:
+```tex
    \[
    \phi = \arctan\left(\frac{z}{\sqrt{x^2 + y^2}}\right)
    \]
+```
    Where:
    - \( z \) is the Z-component of the vector.
    - \( x \) and \( y \) are the X and Y components of the vector, respectively.
    
 2. **Bend Angle**:
    The bend angle between two consecutive pipes is simply the difference between their elevation angles:
+```tex
    \[
    \Delta \phi = \phi_2 - \phi_1
    \]
+```
 
 These calculations are used to determine how much a pipe system bends horizontally and vertically between consecutive segments, providing both a swivel angle (in the XY-plane) and a bend angle (in the Z-axis).
 
