@@ -30,6 +30,13 @@ double PipeRoute::calculateSwivelAngle(const Vector3D& v1, const Vector3D& v2) c
     cosTheta = std::max(-1.0, std::min(1.0, cosTheta));
 
     double angle = std::acos(cosTheta) * (180.0 / M_PI);
+
+    // Specify angle as opposite angle if the cross product is negative
+    double crossProductXY = v1.x * v2.y - v1.y * v2.x;
+    if (crossProductXY < 0) {
+        angle = -angle;
+    }
+    
     return angle;
 }
 
