@@ -1,78 +1,106 @@
-# PipeSystem
+# Pipe System
 
-The `PipeSystem` project is designed to manage and calculate complex routes for pipe-like structures in a 3D space. This system provides functionality for working with points in a Cartesian coordinate system, vectors, and routes that define the paths of pipes. It is especially suited for applications in simulations, games, and engineering tools that require precise control over 3D pathfinding and pipe geometry.
+Pipe System is a C++ application that allows users to input and manage points in a 3D space, calculate the angles between consecutive pipes, and display the information in a user-friendly manner. The system is designed to help with visualization and computation of angles in a pipe routing system.
 
-## Key Features
+## Features
 
-- **CartesianPoint**: Represents a point in 3D space using Cartesian coordinates (X, Y, Z).
-- **Vector3D**: A class for handling vector mathematics in 3D space, allowing operations such as addition, subtraction, and scaling.
-- **PipeRoute**: Defines a route for a pipe, including the ability to calculate paths, lengths, and other properties related to the geometry of the pipe.
+- **User Input**: Easily input points in a 3D space using the `UserDialog` class.
+- **Point Management**: Store and display points using the `PipeRoute` class.
+- **Angle Calculation**: Calculate both swivel (XY-plane) and bend (Z-axis) angles between consecutive pipes.
+- **Vector Operations**: Perform vector calculations such as magnitudes, dot products, and elevation angles using the `Vector3D` class.
 
-## Classes Overview
-
-### CartesianPoint
-
-The `CartesianPoint` class encapsulates a point in a 3D Cartesian coordinate system with the following properties:
-
-- `X`: The X-coordinate of the point.
-- `Y`: The Y-coordinate of the point.
-- `Z`: The Z-coordinate of the point.
-
-#### Key Methods:
-- **DistanceTo**: Calculates the distance between two `CartesianPoint` objects.
-- **Move**: Translates the point by a given `Vector3D`.
-
-### Vector3D
-
-The `Vector3D` class represents a vector in 3D space and provides various vector operations that are essential for manipulating points and defining pipe directions.
-
-#### Key Methods:
-- **Add**: Adds two vectors together.
-- **Subtract**: Subtracts one vector from another.
-- **Normalize**: Returns the unit vector in the same direction.
-- **DotProduct**: Computes the dot product between two vectors.
-- **CrossProduct**: Computes the cross product of two vectors.
-
-### PipeRoute
-
-The `PipeRoute` class manages the path of a pipe, which is defined by a series of `CartesianPoint` objects. It calculates the total length of the pipe and provides various tools for determining the layout and geometry.
-
-#### Key Methods:
-- **AddPoint**: Adds a new point to the pipe route.
-- **CalculateLength**: Calculates the total length of the pipe route by summing the distances between consecutive points.
-- **FindClosestPoint**: Finds the closest point on the pipe route to a given location.
-
-## Getting Started
-
-### Prerequisites
-
-- This project is developed using **Rider IDE**, and you will need it or another compatible IDE to compile and run the code.
-- Basic understanding of 3D vector mathematics and geometry is recommended.
-
-### Installation
+## Installation
 
 1. Clone the repository:
-
     ```bash
-    git clone https://github.com/Lucxar/Pipe-System.git
+    git clone https://github.com/yourusername/Pipe-System.git
+    cd Pipe-System
     ```
 
-2. Open the project in **Rider IDE** or your preferred IDE.
-
-3. Build and run the project to explore the functionality provided by the `PipeSystem`.
+2. Build the project using your preferred C++ compiler.
 
 ## Usage
 
-To start using the `PipeSystem`, you can instantiate a `PipeRoute` and add `CartesianPoint` objects to it, like this:
+1. Run the compiled application.
+2. You will be prompted to input the x, y, and z coordinates of each point.
+3. Once you have inputted all points, the system will display the following:
+    - The coordinates of the points you entered.
+    - The calculated swivel angles (XY-plane) and bend angles (Z-axis) between each consecutive point.
 
-```csharp
-// Create a new pipe route
-PipeRoute pipeRoute = new PipeRoute();
+## Code Overview
 
-// Add points to the route
-pipeRoute.AddPoint(new CartesianPoint(0, 0, 0));
-pipeRoute.AddPoint(new CartesianPoint(1, 1, 0));
+### Main Functions
 
-// Calculate the total length of the pipe route
-double length = pipeRoute.CalculateLength();
-Console.WriteLine($"Total pipe length: {length}");
+- `main()`: The entry point of the program that initiates the `PipeRoute` and collects user input using the `UserDialog` class. It also triggers the display of points and the calculation of angles.
+- `autonomousPointsFillOut(PipeRoute& route)`: A helper function that pre-fills the `PipeRoute` with predefined points for testing.
+
+### Classes and Methods
+
+#### CartesianPoint
+
+Represents a point in 3D space.
+
+- `CartesianPoint(double x, double y, double z)`: Constructor to initialize a point.
+- `void print() const`: Prints the point’s coordinates.
+
+#### Vector3D
+
+Represents a 3D vector for performing calculations between points.
+
+- `Vector3D(double x, double y, double z)`: Constructor to initialize a vector.
+- `Vector3D(const CartesianPoint& start, const CartesianPoint& end)`: Constructs a vector between two points.
+- `double magnitude() const`: Calculates the vector's magnitude.
+- `double magnitudeXY() const`: Calculates the vector's magnitude in the XY plane.
+- `double horizontalMagnitude() const`: Alias for `magnitudeXY()`.
+- `double dotProductXY(const Vector3D& other) const`: Calculates the dot product in the XY-plane.
+- `double elevationAngle() const`: Calculates the elevation angle (Z-axis) of the vector.
+
+#### PipeRoute
+
+Stores the route made of `CartesianPoint` objects and performs vector calculations between points.
+
+- `void addPoint(const CartesianPoint& point)`: Adds a new point to the route.
+- `void displayPoints() const`: Displays all points in the route.
+- `void calculateAngles()`: Calculates both swivel and bend angles between consecutive points.
+- `void calculateVectors()`: Helper function that generates vectors between each point.
+- `double calculateSwivelAngle(const Vector3D& v1, const Vector3D& v2) const`: Calculates the angle between two vectors in the XY plane.
+- `double calculateBendAngle(const Vector3D& v1, const Vector3D& v2) const`: Calculates the bend angle between two vectors in the Z axis.
+
+#### UserDialog
+
+Handles the user interface for inputting coordinates.
+
+- `static void inputCoordinates(PipeRoute& route)`: Gathers user input to populate the `PipeRoute` with points.
+
+## Example
+
+```bash
+Enter the x, y, z coordinates of the point:
+x: 1
+y: 2
+z: 3
+Do you want to add another point? (y/n): y
+
+Enter the x, y, z coordinates of the point:
+x: 4
+y: 5
+z: 6
+Do you want to add another point? (y/n): n
+```
+
+```bash
+Output:
+
+java
+
+Points entered:
+(1, 2, 3)
+(4, 5, 6)
+
+Swivel angle (XY direction): 45 degrees
+Bend angle (Z direction): 30 degrees
+```
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for more details.
