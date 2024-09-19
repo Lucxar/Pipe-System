@@ -74,31 +74,43 @@ Handles the user interface for inputting coordinates.
 
 ## Example
 
+Input:
 ```bash
-Enter the x, y, z coordinates of the point:
-x: 1
-y: 2
-z: 3
-Do you want to add another point? (y/n): y
-
 Enter the x, y, z coordinates of the point:
 x: 4
-y: 5
-z: 6
-Do you want to add another point? (y/n): n
+y: 4
+z: 4
+Do you want to add another point? (y/n): z
+Invalid input. Please enter 'y' or 'n': y
+Enter the x, y, z coordinates of the point:
+x: 7
+y: 4
+z: 4
+Do you want to add another point? (y/n): y
+Enter the x, y, z coordinates of the point:
+x: 7
+y: 7
+z: 4
+Do you want to add another point? (y/n): y
+Enter the x, y, z coordinates of the point:
+x: 10
+y: 7
+z: 4
 ```
 
-```bash
 Output:
-
-java
-
-Points entered:
-(1, 2, 3)
-(4, 5, 6)
-
-Swivel angle (XY direction): 45 degrees
-Bend angle (Z direction): 30 degrees
+```bash
+Point: (4, 4, 4)
+Point: (7, 4, 4)
+Point: (7, 7, 4)
+Point: (10, 7, 4)
+Between segment 1 and 2:
+  Swivel angle (XY plane): 90 degrees
+  Bend angle (Z direction): 0 degrees
+Between segment 2 and 3:
+  Swivel angle (XY plane): -90 degrees
+  Bend angle (Z direction): 0 degrees
+Press any button . . .
 ```
 
 ## License
