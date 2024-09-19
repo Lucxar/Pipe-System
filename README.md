@@ -54,7 +54,7 @@ The `PipeRoute` class manages the path of a pipe, which is defined by a series o
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/maystudios/PipeSystem.git
+    git clone https://github.com/Lucxar/Pipe-System.git
     ```
 
 2. Open the project in **Rider IDE** or your preferred IDE.
